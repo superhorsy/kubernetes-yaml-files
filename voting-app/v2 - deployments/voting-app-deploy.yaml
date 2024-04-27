@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: votion-app-deploy
+  labels:
+    name: votion-app-deploy
+    app: demo-votion-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: votion-app-pod
+      app: demo-votion-app
+  template:
+    metadata:
+      name: votion-app-pod
+      labels:
+        name: votion-app-pod
+        app: demo-votion-app
+    spec:
+      containers:
+        - name: votion-app
+          image: kodekloud/examplevotingapp_vote:v1
+          ports:
+            - containerPort: 80
